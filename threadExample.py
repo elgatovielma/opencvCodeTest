@@ -5,6 +5,7 @@ import random
 
 def loop1_10():
     x = random.random() * 10
+    print("Activa")
     time.sleep(x)
     print("thread 1: " + str(x))
 
@@ -28,7 +29,15 @@ def loop1_13(y):
     print(y)
 
 
-threading.Thread(target=loop1_10).start()
+t = threading.Thread(target=loop1_10)
 threading.Thread(target=loop1_11).start()
 threading.Thread(target=loop1_12).start()
 threading.Thread(target=loop1_13(2)).start()
+
+t.start()
+
+time.sleep(15)
+if not t.is_alive():
+    print("No estoy viva!")
+else:
+    print("Estoy viva")
