@@ -28,10 +28,6 @@ GPIO.setup(Pin_Button, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 # Create Local Binary Patterns Histograms for face recognization
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 
-# Load the trained mode
-recognizer.read('trainer/trainer.yml')
-
-
 
 # Load prebuilt model for Frontal Face
 cascadePath = "/home/pi/opencv-3.4.0/data/haarcascades/haarcascade_frontalface_default.xml"
@@ -138,6 +134,8 @@ def sistemaReconocimiento():
 while True:
     entrada = GPIO.input(Pin_Button)
     if entrada == False:
+        # Load the trained mode
+        recognizer.read('trainer/trainer.xml')
         print('Button Pressed')
         sistemaReconocimiento()
         
